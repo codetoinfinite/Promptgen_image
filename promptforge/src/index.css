@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0d0c0a;
+  --surface: #181612;
+  --border: #2a2620;
+  --text-1: #e8e4d8;
+  --text-2: #8a8478;
+  --text-3: #5a564c;
+  --accent: #d97e3a;
+  --accent-hover: #e8924f;
+  --accent-muted: #6b4521;
+  --error: #c4583a;
+  --success: #7a9968;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #2a2620 #0d0c0a;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-1);
+  font-family: 'Inter Tight', sans-serif;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Grain overlay */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Forge log line fade-in */
+@keyframes fadeInLine {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.forge-log-line {
+  animation: fadeInLine 200ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forge-log-line {
+    animation: none;
+  }
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Shake animation for empty input */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(-6px); }
+  30% { transform: translateX(6px); }
+  45% { transform: translateX(-4px); }
+  60% { transform: translateX(4px); }
+  75% { transform: translateX(-2px); }
+  90% { transform: translateX(2px); }
+}
+
+.shake-input {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Result panel entry animation */
+@keyframes resultEnter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result-panel-enter {
+  animation: resultEnter 200ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .result-panel-enter {
+    animation: none;
+  }
+}
+
+/* Custom scrollbar for webkit */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0c0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2620;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3630;
+}
+
+/* Transition defaults */
+select, input, textarea, button {
+  transition-duration: 150ms;
+}
+
+/* Remove native select arrow on WebKit */
+select {
+  -webkit-appearance: none;
+}
