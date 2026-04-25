@@ -28,6 +28,10 @@ build/
 .claude-mem/
 .claude-state.md
 
+# Project meta (not for public repo)
+CLAUDE.md
+promptforge-build-spec.md
+
 # Logs
 npm-debug.log*
 yarn-debug.log*
